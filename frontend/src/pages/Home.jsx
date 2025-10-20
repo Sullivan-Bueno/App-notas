@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Notes from "../components/Notes.jsx";
+import AllNotes from "../components/AllNotes.jsx";
 import SingleNote from "../components/SingleNote.jsx";
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -7,7 +7,7 @@ import { useParams } from "react-router-dom";
 const Home = ({ type }) => {
   const { id } = useParams();
   const [note, setNote] = useState({});
-  const [noteArray, setNoteArray] = useState([])
+  const [noteArray, setNoteArray] = useState([]);
 
   useEffect(() => {
     async function getNote() {
@@ -31,7 +31,7 @@ const Home = ({ type }) => {
   if (type === "SingleNote") {
     return <SingleNote note={note} />;
   }
-  return <Notes note={noteArray} />
+  return <AllNotes note={noteArray} />;
 };
 
 export default Home;

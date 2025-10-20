@@ -18,3 +18,13 @@ export async function getNotes(req, res) {
     }
   }
 }
+
+export async function deleteNotes(req, res) {
+  const id = req.params.id;
+  try {
+    const result = await Note.deleteOne({ _id: id });
+    res.status(200).send("Nota apagada com sucesso!" + result);
+  } catch (err) {
+    res.status(501).json(err);
+  }
+}

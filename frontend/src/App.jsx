@@ -1,11 +1,13 @@
 import "./App.css";
+import SideBar from "./components/SideBar.jsx";
 import Home from "./pages/Home.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full flex">
       <BrowserRouter>
+        <SideBar />
         <Routes>
           <Route path="/" element={<Home type="allNotes" />} />
           <Route path="/:id" element={<Home type="SingleNote" />} />
