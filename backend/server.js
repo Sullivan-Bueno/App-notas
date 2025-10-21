@@ -2,7 +2,11 @@ import connectDB from "./config/db.js";
 import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
-import { getNotes, deleteNotes } from "./controllers/noteController.js";
+import {
+  getNotes,
+  deleteNotes,
+  addNotes,
+} from "./controllers/noteController.js";
 
 const app = express();
 app.use(express.json());
@@ -13,6 +17,8 @@ dotenv.config({ quiet: true, path: "./.env" });
 app.get("/", getNotes);
 
 app.get("/:id", getNotes);
+
+app.post("/addnotes", addNotes);
 
 app.delete("/deletenotes/:id", deleteNotes);
 

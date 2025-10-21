@@ -11,8 +11,9 @@ const SingleNote = ({ note }) => {
 
   async function handleDeleteClick(id) {
     try {
-      axios.delete(`http://localhost:5000/deletenotes/${id}`);
-      navigate("/");
+      axios.delete(`http://localhost:5000/deletenotes/${id}`).then(() => {
+        navigate("/");
+      });
     } catch (err) {
       console.error(err);
     }
@@ -37,8 +38,8 @@ const SingleNote = ({ note }) => {
             }}
           />
         </div>
-        <h1 className="text-3xl font-semibold">{note.titulo}</h1>
-        <p className="text-2xl">{note.descricao}</p>
+        <h1 className="text-3xl font-semibold">{note.title}</h1>
+        <p className="text-2xl">{note.description}</p>
       </div>
     </div>
   );

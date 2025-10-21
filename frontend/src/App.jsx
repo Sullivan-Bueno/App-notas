@@ -1,6 +1,7 @@
 import "./App.css";
 import SideBar from "./components/SideBar.jsx";
 import Home from "./pages/Home.jsx";
+import AddNote from "./pages/AddNote.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home type="allNotes" />} />
           <Route path="/:id" element={<Home type="SingleNote" />} />
+          <Route path="/addnotes" element={<AddNote />} />
         </Routes>
       </BrowserRouter>
     </div>

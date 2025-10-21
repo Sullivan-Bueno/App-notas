@@ -4,8 +4,12 @@ import { useNavigate } from "react-router-dom";
 const SideBar = () => {
   const navigate = useNavigate();
 
-  function handleClick() {
+  function handleHouseClick() {
     navigate("/");
+  }
+
+  function handlePlusClick() {
+    navigate("/addnotes");
   }
 
   return (
@@ -13,11 +17,12 @@ const SideBar = () => {
       <House
         size={42}
         className="hover:text-amber-500 text-white ease-in transition-all cursor-pointer"
-        onClick={handleClick}
+        onClick={handleHouseClick}
       />
       <FilePlus
         size={42}
         className="hover:text-amber-500 text-white ease-in transition-all cursor-pointer"
+        onClick={handlePlusClick}
       />
     </div>
   );
