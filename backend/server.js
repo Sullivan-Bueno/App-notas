@@ -6,6 +6,7 @@ import {
   getNotes,
   deleteNotes,
   addNotes,
+  updateNotes,
 } from "./controllers/noteController.js";
 
 const app = express();
@@ -19,6 +20,8 @@ app.get("/", getNotes);
 app.get("/:id", getNotes);
 
 app.post("/addnotes", addNotes);
+
+app.patch("/updatenotes/:id", updateNotes);
 
 app.delete("/deletenotes/:id", deleteNotes);
 

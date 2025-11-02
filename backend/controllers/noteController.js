@@ -41,3 +41,17 @@ export async function deleteNotes(req, res) {
     res.status(500).json(err);
   }
 }
+
+export async function updateNotes(req, res) {
+  const id = req.params.id;
+  try {
+    const { title, description } = req.body;
+    const updatedNote = await Note.updateOne(
+      { _id: id },
+      { title: title, description: description }
+    );
+    res.status(200).json(updatedNote);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+}
