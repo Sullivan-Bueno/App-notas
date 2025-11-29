@@ -1,5 +1,6 @@
 import Note from "../models/note.js";
 
+// IF has ID, return unique note, else return all notes
 export async function getNotes(req, res) {
   const id = req.params.id;
   if (!id) {
