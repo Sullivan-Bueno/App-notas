@@ -5,7 +5,7 @@ import App from "./App.jsx";
 
 
 createRoot(document.getElementById("root")).render(
-  <div className="h-screen w-screen bg-[url(imagem.jpg)] flex">
+  <div className="h-screen w-screen bg-[url(/imagem.jpg)] bg-cover flex">
     <StrictMode>
       <App />
     </StrictMode>

@@ -1,4 +1,4 @@
-import { X, Trash2 } from "lucide-react";
+import { X, Trash2, PencilLine } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -11,12 +11,16 @@ const SingleNote = ({ note }) => {
 
   async function handleDeleteClick(id) {
     try {
-      axios.delete(`http://localhost:5000/deletenotes/${id}`).then(() => {
+      axios.delete(`http://localhost:5000/note/${id}`).then(() => {
         navigate("/");
       });
     } catch (err) {
       console.error(err);
     }
+  }
+
+  function handleEditClick(id) {
+    navigate(`/updatenote/${id}`);
   }
 
   const data = new Date(note.date);
@@ -30,13 +34,22 @@ const SingleNote = ({ note }) => {
       <div className="flex flex-col gap-2 text-black h-90 w-200 bg-amber-200 p-6 rounded-md">
         <div className="flex justify-between items-center">
           <p>{dataFormatada}</p>
-          <Trash2
-            className="bg-amber-100 rounded-md text-red-300 h-10 w-10 p-1 cursor-pointer border-2 border-transparent
+          <div className="flex gap-4 justify-center items-center">
+            <PencilLine
+              className="bg-gray-100 rounded-md text-b h-10 w-10 p-1 cursor-pointer border-2 border-transparent
+            ease-in transition-all  hover:border-black"
+              onClick={() => {
+                handleEditClick(note._id);
+              }}
+            />
+            <Trash2
+              className="bg-amber-100 rounded-md text-red-300 h-10 w-10 p-1 cursor-pointer border-2 border-transparent
             ease-in transition-all  hover:border-red-300 "
-            onClick={() => {
-              handleDeleteClick(note._id);
-            }}
-          />
+              onClick={() => {
+                handleDeleteClick(note._id);
+              }}
+            />
+          </div>
         </div>
         <h1 className="text-3xl font-semibold">{note.title}</h1>
         <p className="text-2xl">{note.description}</p>

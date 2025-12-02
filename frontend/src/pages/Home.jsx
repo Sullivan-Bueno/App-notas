@@ -13,8 +13,8 @@ const Home = ({ type }) => {
     async function getNote() {
       try {
         const url = id
-          ? `http://localhost:5000/${id}`
-          : `http://localhost:5000/`;
+          ? `http://localhost:5000/note/${id}`
+          : `http://localhost:5000/note`;
         const res = await axios.get(url);
         if (id) {
           setNote(res.data[0]);
@@ -26,7 +26,7 @@ const Home = ({ type }) => {
       }
     }
     getNote();
-  }, [id]);
+  });
 
   if (type === "SingleNote") {
     return <SingleNote note={note} />;
