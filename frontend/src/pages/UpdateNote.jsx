@@ -41,27 +41,41 @@ const UpdateNote = () => {
     navigate(`/${id}`);
   }
 
+  async function handleSubmitClick() {
+    await axios.put(`http://localhost:5000/note/${id}`, {
+      title,
+      description,
+    });
+    navigate(`/${id}`);
+  }
+
   return (
     <div className="flex justify-center items-center h-full w-full bg-[rgba(0,0,0,0.4)] bg-blend-color">
       <ArrowBigLeft
         className="cursor-pointer bg-[rgba(0,0,0,0.4)] bg-blend-color text-white h-[48px] w-[48px] rounded-3xl absolute top-3 left-22 hover:bg-white hover:text-black ease-in transition-all"
         onClick={handleXClick}
       />
-      <div className="flex flex-col gap-2 text-black h-90 w-200 bg-amber-200 p-6 rounded-md">
-        <div className="flex justify-between items-center">
+      <div className="flex flex-col gap-2 text-black h-150 w-250 bg-gray-800 p-6 rounded-3xl">
+        <div className="flex justify-between items-center text-white">
           <p>{date}</p>
           <div className="flex gap-4 justify-center items-center"></div>
         </div>
         <textarea
-          className="text-3xl font-semibold bg-white rounded-md p-1"
+          className="text-3xl font-semibold bg-white rounded-2xl p-1"
           value={title}
           onChange={onChangeTitle}
         ></textarea>
         <textarea
-          className="text-2xl h-full bg-white rounded-md p-1"
+          className="text-2xl h-full bg-white rounded-2xl p-1"
           value={description}
           onChange={onChangeDescription}
         ></textarea>
+        <button
+          className="cursor-pointer p-2 border-white border-1 w-50 self-center text-white hover:bg-white hover:text-black transition-all ease-in rounded-2xl"
+          onClick={handleSubmitClick}
+        >
+          Concluir alterações
+        </button>
       </div>
     </div>
   );

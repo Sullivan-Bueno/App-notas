@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/", getNotes);
 router.get("/:id", getNotes);
 router.post("/", addNotes);
-router.patch("/:id", updateNotes);
+router.put("/:id", updateNotes);
 router.delete("/:id", deleteNotes);
 
 export default router;

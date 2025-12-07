@@ -49,7 +49,7 @@ export async function updateNotes(req, res) {
     const { title, description } = req.body;
     const updatedNote = await Note.updateOne(
       { _id: id },
-      { title: title, description: description }
+      { title, description }
     );
     res.status(200).json(updatedNote);
   } catch (err) {
