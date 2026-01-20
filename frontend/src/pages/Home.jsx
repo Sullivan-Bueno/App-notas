@@ -8,10 +8,12 @@ const Home = ({ type }) => {
   const { id } = useParams();
   const [note, setNote] = useState({});
   const [noteArray, setNoteArray] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function getNote() {
       try {
+        setLoading(true);
         const url = id
           ? `http://localhost:5000/note/${id}`
           : `http://localhost:5000/note`;
@@ -23,15 +25,17 @@ const Home = ({ type }) => {
         }
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     }
     getNote();
-  });
+  }, [id]);
 
   if (type === "SingleNote") {
-    return <SingleNote note={note} />;
+    return <SingleNote note={note} loading={loading} />;
   }
-  return <AllNotes note={noteArray} />;
+  return <AllNotes note={noteArray} loading={loading} />;
 };
 
 export default Home;

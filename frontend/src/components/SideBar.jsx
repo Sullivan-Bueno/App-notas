@@ -13,7 +13,7 @@ const SideBar = () => {
   }
 
   return (
-    <div className="bg-gray-800 h-full w-[80px] flex flex-col justify-center items-center gap-6 rounded-r-3xl">
+    <div className="bg-gray-800 h-full w-20 flex flex-col justify-center items-center gap-6 rounded-r-3xl">
       <House
         size={35}
         className="hover:text-amber-500 hover:scale-120 text-white ease-in transition-all cursor-pointer"
