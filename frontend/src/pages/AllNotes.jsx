@@ -1,4 +1,4 @@
-import Note from "./Note";
+import Note from "../components/Note";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { useState } from "react";
@@ -12,7 +12,7 @@ const AllNotes = ({ note, loading }) => {
 
   if (loading) {
     return (
-      <div className="h-full w-full flex justify-center items-center bg-[rgba(0,0,0,0.4)]">
+      <div className="min-h-screen w-full flex justify-center items-center bg-[rgba(0,0,0,0.4)]">
         <div className="p-10 rounded-4xl bg-[rgba(0,0,0,0.6)]">
           <h1 className="text-white text-3xl ">Carregando...</h1>
         </div>

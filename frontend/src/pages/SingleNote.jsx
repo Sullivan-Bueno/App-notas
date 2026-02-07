@@ -1,12 +1,23 @@
 import { X, Trash2, PencilLine } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../utils/formatDate"
 import axios from "axios";
 
-const SingleNote = ({ note }) => {
+const SingleNote = ({ note, loading }) => {
   const navigate = useNavigate();
 
   function handleXClick() {
     navigate("/");
+  }
+
+  if (loading) {
+    return (
+      <div className="min-h-screen w-full flex justify-center items-center bg-[rgba(0,0,0,0.4)]">
+        <div className="p-10 rounded-4xl bg-[rgba(0,0,0,0.6)]">
+          <h1 className="text-white text-3xl ">Carregando...</h1>
+        </div>
+      </div>
+    );
   }
 
   async function handleDeleteClick(id) {
@@ -23,8 +34,7 @@ const SingleNote = ({ note }) => {
     navigate(`/updatenote/${id}`);
   }
 
-  const data = new Date(note.date);
-  const dataFormatada = data.toLocaleDateString("pt-BR");
+  const dataFormatada = formatDate(note.date);
   return (
     <div className="flex justify-center items-center h-full w-full bg-[rgba(0,0,0,0.4)] bg-blend-color">
       <X

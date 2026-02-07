@@ -1,6 +1,9 @@
+import { formatDate } from "../utils/formatDate"
+
 const Note = ({ note }) => {
-  const data = new Date(note.date);
-  const dataFormatada = data.toLocaleDateString("pt-BR");
+  
+  const dataFormatada = formatDate(note.date);
+
   return (
     <>
       <div className="w-full">

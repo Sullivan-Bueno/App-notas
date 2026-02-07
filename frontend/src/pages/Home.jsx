@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import AllNotes from "../components/AllNotes.jsx";
-import SingleNote from "../components/SingleNote.jsx";
+import AllNotes from "./AllNotes.jsx";
+import SingleNote from "./SingleNote.jsx";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 
