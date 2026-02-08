@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import noteRoutes from "./routes/NoteRoute.js";
+import userRoutes from "./routes/UserRoute.js"
 
 // API config
 dotenv.config({ quiet: true, path: "./.env" });
@@ -12,6 +13,7 @@ app.use(cors());
 
 // Routes
 app.use("/note", noteRoutes);
+app.use("/user", userRoutes)
 
 //Connect DB then start API service
 connectDB().then(() => {
