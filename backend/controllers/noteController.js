@@ -35,8 +35,8 @@ export async function addNotes(req, res) {
 export async function deleteNotes(req, res) {
   const id = req.params.id;
   try {
-    const result = await Note.deleteOne({ _id: id });
-    res.status(200).send("Nota apagada com sucesso!" + result);
+    await Note.deleteOne({ _id: id });
+    res.status(200).send("Nota apagada com sucesso!");
   } catch (err) {
     res.status(500).json(err);
   }
