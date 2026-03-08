@@ -2,32 +2,21 @@ import Note from "../components/Note";
 import { useNavigate } from "react-router-dom";
 import { Search } from "lucide-react";
 import { useState } from "react";
+import MessageComponent from "../components/MessageComponent";
 
 const AllNotes = ({ note, loading }) => {
   const [filter, setFilter] = useState("");
   const navigate = useNavigate();
   const filteredNotes = note.filter((n) =>
-  n.title.toLowerCase().includes(filter.toLowerCase()),
-);
+    n.title.toLowerCase().includes(filter.toLowerCase()),
+  );
 
   if (loading) {
-    return (
-      <div className="min-h-screen w-full flex justify-center items-center bg-[rgba(0,0,0,0.4)]">
-        <div className="p-10 rounded-4xl bg-[rgba(0,0,0,0.6)]">
-          <h1 className="text-white text-3xl ">Carregando...</h1>
-        </div>
-      </div>
-    );
+    return <MessageComponent>Carregando...</MessageComponent>;
   }
 
   if (note.length == 0) {
-    return (
-      <div className="h-full w-full flex justify-center items-center bg-[rgba(0,0,0,0.4)]">
-        <div className="p-10 rounded-4xl bg-[rgba(0,0,0,0.6)]">
-          <h1 className="text-white text-3xl ">Notas não encontradas</h1>
-        </div>
-      </div>
-    );
+    return <MessageComponent>Notas não encontradas</MessageComponent>;
   }
 
   function handleFilterChange(e) {

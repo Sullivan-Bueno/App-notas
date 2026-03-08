@@ -3,6 +3,7 @@ import SideBar from "./components/SideBar.jsx";
 import Home from "./pages/Home.jsx";
 import AddNote from "./pages/AddNote.jsx";
 import UpdateNote from "./pages/UpdateNote.jsx";
+import Login from "./pages/Login.jsx";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <SideBar />
         <Routes>
           <Route path="/" element={<Home type="allNotes" />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/:id" element={<Home type="SingleNote" />} />
           <Route path="/addnotes" element={<AddNote />} />
           <Route path="/updatenote/:id" element={<UpdateNote />} />
