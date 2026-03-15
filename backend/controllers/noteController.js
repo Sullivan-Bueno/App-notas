@@ -1,4 +1,5 @@
 import Note from "../models/note.js";
+import axios from "axios";
 
 export async function getNotes(req, res) {
   const id = req.params.id;
@@ -22,13 +23,20 @@ export async function getNotes(req, res) {
 export async function addNotes(req, res) {
   try {
     const { title, description } = req.body;
+    const authHeader = req.headers.authorization;
+    const token = authHeader.split(" ")[1];
+
+    const axiosResult = await tokenrequest(token);
+    const userId = axiosResult.data.token.userId;
+
     const result = await Note.create({
       title,
       description,
+      userId,
     });
-    res.status(201).json(result);
+    res.status(201).json({ result });
   } catch (err) {
-    res.status(500).json({ erro: "erro ao criar nota" });
+    res.status(500).json({ erro: err.message });
   }
 }
 
@@ -48,10 +56,19 @@ export async function updateNotes(req, res) {
     const { title, description } = req.body;
     const updatedNote = await Note.updateOne(
       { _id: id },
-      { title, description }
+      { title, description },
     );
     res.status(200).json(updatedNote);
   } catch (err) {
     res.status(500).json(err);
   }
+}
+
+async function tokenrequest(token2) {
+  const result = axios.get("http://localhost:5000/auth/verify-token", {
+    headers: {
+      authorization: `Bearer ${token2}`,
+    },
+  });
+  return result;
 }

@@ -3,7 +3,8 @@ import express from "express";
 import dotenv from "dotenv";
 import cors from "cors";
 import noteRoutes from "./routes/NoteRoute.js";
-import userRoutes from "./routes/UserRoute.js"
+import userRoutes from "./routes/UserRoute.js";
+import authRoutes from "./routes/AuthRoute.js";
 
 // API config
 dotenv.config({ quiet: true, path: "./.env" });
@@ -12,8 +13,9 @@ app.use(express.json());
 app.use(cors());
 
 // Routes
+app.use("/auth", authRoutes);
 app.use("/note", noteRoutes);
-app.use("/user", userRoutes)
+app.use("/user", userRoutes);
 
 //Connect DB then start API service
 connectDB().then(() => {
