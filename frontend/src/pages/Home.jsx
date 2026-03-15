@@ -36,7 +36,7 @@ const Home = ({ type }) => {
       }
     }
     getNote();
-  }, [id, cookies.token2, navigate]);
+  }, [id, cookies.token, navigate]);
 
   if (type === "SingleNote") {
     return <SingleNote note={note} loading={loading} />;

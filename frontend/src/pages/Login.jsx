@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 
 import axios from "axios";
 
 const Login = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const [, setCookie] = useCookies(["token"]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ const Login = () => {
 
   async function handleLoginClick(email, password) {
     try {
-      const token = await axios.post("http://localhost:5000/user/auth", {
+      const token = await axios.post("http://localhost:5000/auth/login", {
         email: email,
         password: password,
       });

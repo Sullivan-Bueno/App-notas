@@ -16,7 +16,7 @@ const AllNotes = ({ note, loading }) => {
   }
 
   if (note.length == 0) {
-    return <MessageComponent>Notas não encontradas</MessageComponent>;
+    return <MessageComponent>Parece que você não tem anotações</MessageComponent>;
   }
 
   function handleFilterChange(e) {

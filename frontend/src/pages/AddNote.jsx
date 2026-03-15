@@ -1,9 +1,18 @@
 import axios from "axios";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const AddNote = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [cookie] = useCookies(["token"]);
+  const token = cookie.token;
+
+  if (token == undefined) {
+    navigate("/login");
+  }
 
   function handleTitleChange(e) {
     setTitle(e.target.value);
@@ -18,10 +27,18 @@ const AddNote = () => {
     if (title == false || description == false) {
       alert("Preencha os campos!");
     } else {
-      await axios.post("http://localhost:5000/note", {
-        title,
-        description,
-      });
+      await axios.post(
+        "http://localhost:5000/note",
+        {
+          title,
+          description,
+        },
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        },
+      );
       setTitle("");
       setDescription("");
     }
