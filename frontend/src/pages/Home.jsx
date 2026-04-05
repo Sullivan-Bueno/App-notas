@@ -14,28 +14,33 @@ const Home = ({ type }) => {
   const [cookies] = useCookies();
 
   useEffect(() => {
-    if (cookies.token == undefined) {
+    if (!cookies.token || cookies.token == undefined) {
       navigate("/login");
-    }
-    async function getNote() {
-      try {
-        setLoading(true);
-        const url = id
-          ? `http://localhost:5000/note/${id}`
-          : `http://localhost:5000/note`;
-        const res = await axios.get(url);
-        if (id) {
-          setNote(res.data[0]);
-        } else {
-          setNoteArray(res.data);
+    } else {
+      async function getNote() {
+        try {
+          setLoading(true);
+          const url = id
+            ? `http://localhost:5000/note/${id}`
+            : `http://localhost:5000/note`;
+          const res = await axios.get(url, {
+            headers: {
+              authorization: `Bearer ${cookies.token}`,
+            },
+          });
+          if (id) {
+            setNote(res.data[0]);
+          } else {
+            setNoteArray(res.data);
+          }
+        } catch (err) {
+          console.error(err);
+        } finally {
+          setLoading(false);
         }
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
       }
+      getNote();
     }
-    getNote();
   }, [id, cookies.token, navigate]);
 
   if (type === "SingleNote") {
